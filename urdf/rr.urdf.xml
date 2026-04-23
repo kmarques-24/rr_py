@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot name="rescue_roller">
+
+  <!-- Main body: 5 cm diameter sphere -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+      <material name="body_gray">
+        <color rgba="0.4 0.4 0.4 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Left wheel: 7 cm diameter, 0.5 cm thick cylinder -->
+  <link name="left_wheel_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.005"/>
+      </geometry>
+      <material name="wheel_black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_left_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <!-- Rotate cylinder 90deg around X so flat face points outward (along Y-axis) -->
+    <origin xyz="0 0.0275 0" rpy="1.5708 0 0"/>
+  </joint>
+
+  <!-- Right wheel: 7 cm diameter, 0.5 cm thick cylinder -->
+  <link name="right_wheel_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.005"/>
+      </geometry>
+      <material name="wheel_black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_right_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+    <origin xyz="0 -0.0275 0" rpy="1.5708 0 0"/>
+  </joint>
+
+  <!-- TOF sensor: 2.5 cm in front of center -->
+  <link name="tof_link">
+    <visual>
+      <geometry>
+        <box size="0.02 0.01 0.001"/>
+      </geometry>
+      <material name="tof_blue">
+        <color rgba="0.2 0.4 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_tof" type="fixed">
+    <parent link="base_link"/>
+    <child link="tof_link"/>
+    <origin xyz="0.025 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- IMU: 2.5 cm behind center -->
+  <link name="imu_link">
+    <visual>
+      <geometry>
+        <box size="0.015 0.025 0.01"/>
+      </geometry>
+      <material name="imu_green">
+        <color rgba="0.2 0.8 0.2 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_imu" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="-0.025 0 0" rpy="0 -1.5708 0"/>
+  </joint>
+
+</robot>
