@@ -37,8 +37,7 @@ class TopicWaiter(Node):
     def check_done(self):
         if self.scan_received and self.points_received:
             self.get_logger().info('Both topics live — triggering SLAM and bag')
-            raise SystemExit(0)
-            # rclpy.shutdown()  # clean exit signals OnProcessExit
+            raise SystemExit(0) # better alternative to rclpy.shutdown()
 
 def main():
     rclpy.init()

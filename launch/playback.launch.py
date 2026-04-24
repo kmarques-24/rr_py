@@ -15,7 +15,7 @@ from ament_index_python.packages import get_package_share_directory
 #   Or whatever bag file in the arg to run. Second terminal provides playback controls.
 
 def generate_launch_description():
-    bag_path = LaunchConfiguration('bag')
+    # bag_path = LaunchConfiguration('bag')
 
     urdf_path = os.path.join(
         get_package_share_directory('rr_py'), 'urdf', 'rr.urdf.xml')

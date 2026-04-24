@@ -11,7 +11,6 @@ import tf2_ros
 class OdomTFBroadcaster(Node):
     def __init__(self):
         super().__init__('odom_tf_broadcaster')
-        # self.broadcaster = tf2_ros.TransformStamped()
         self.tf_broadcaster = tf2_ros.TransformBroadcaster(self)
         self.sub = self.create_subscription(
             Odometry, '/odom', self.odom_callback, 10)

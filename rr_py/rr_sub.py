@@ -2,12 +2,12 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32 # Match the type used in micro-ROS
 
+# Simple subscriber for first debugging. Can also call ros2 topic echo
 class MicroRosSubscriber(Node):
 
     def __init__(self):
         super().__init__('microros_subscriber')
         
-        # Ensure the topic name and message type match the micro-ROS node
         self.subscription = self.create_subscription(
             Float32,
             'float32publisher',

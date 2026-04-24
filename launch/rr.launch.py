@@ -46,7 +46,7 @@ def generate_launch_description():
         ),
 
         # ----- Static transforms -----
-        # inside generate_launch_description():
+        # Published from rr.urdf
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
@@ -78,7 +78,7 @@ def generate_launch_description():
             }]
         ),
         # ----- Broadcast odom transform -----
-        # slam_toolbox uses tf2, so need to take from /odom and publish here
+        # slam_toolbox uses tf2 of robot in world, so need to take from /odom and publish here
         Node(
             package='rr_py',
             executable='odom_tf_broadcaster',
@@ -87,8 +87,8 @@ def generate_launch_description():
         ),
 
         # ----- Topic sentinel -----
-        # Exits cleanly once /scan and /points both have data.
-        # OnProcessExit below uses this as the trigger.
+        # Exits cleanly once /scan and /points both have data
+        # OnProcessExit below uses this as the trigger
         (topic_waiter := ExecuteProcess(
             cmd=['ros2', 'run', 'rr_py', 'topic_waiter'],
             output='screen'
@@ -117,18 +117,20 @@ def generate_launch_description():
                             'max_laser_range':          1.0,
                             'minimum_travel_distance':  0.05,
                             'minimum_travel_heading':   0.1,
-                            'transform_publish_period': 0.02,  # 50 Hz tf update
-                            'tf_buffer_duration':       10.0,  # keep 30s of tf history (default is 30s anyway)
-                            'map_update_interval':      1.0,   # lower = more responsive
+                            'transform_publish_period': 0.02,           # 50 Hz tf update
+                            'tf_buffer_duration':       10.0,           # keep 30s of tf history (default is 30s anyway)
+                            'map_update_interval':      1.0,            # lower = more responsive
                             'use_scan_matching':        False,
-                            # 'use_scan_matching':        True,  # default true. Will correct pose based on map 
-                            # 'correlation_search_space_dimension':         0.1,   # smaller = trust odom more
+
+                            # ----- Potential parameters to play with to improve mapping -----
+                            # 'use_scan_matching':        True,         # default true. Corrects odom based on map 
+                            # 'correlation_search_space_dimension':         0.1,    # smaller = trust odom more
                             # 'correlation_search_space_resolution':        0.01,
-                            # 'correlation_search_space_smear_deviation':   0.02,   # safely under dimension/4 
+                            # 'correlation_search_space_smear_deviation':   0.02,   # should be under dimension/4 
                             #     # scan matcher only searches this size square. Prevents scan matcher from
                             #     # correcting pose too aggressively. Lower value trusts odom more
-                            # 'link_match_minimum_response_fine':           0.3,    # Accept scans with weaker match quality
-                            # 'do_loop_closing':                            False,  # Disable loop closure during debugging
+                            # 'link_match_minimum_response_fine':           0.3,    # accept scans with weaker match quality?
+                            # 'do_loop_closing':                            False,  # disable loop closure during debugging?
                         }]
                     ),
 

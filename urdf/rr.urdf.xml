@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="rescue_roller">
 
-  <!-- Main body: 5 cm diameter sphere -->
+  <!-- Body: 5 cm diameter sphere -->
   <link name="base_link">
     <visual>
       <geometry>
@@ -13,7 +13,7 @@
     </visual>
   </link>
 
-  <!-- Left wheel: 7 cm diameter, 0.5 cm thick cylinder -->
+  <!-- Left wheel: 7 cm diameter 0.5 cm thick cylinder -->
   <link name="left_wheel_link">
     <visual>
       <geometry>
@@ -32,7 +32,7 @@
     <origin xyz="0 0.0275 0" rpy="1.5708 0 0"/>
   </joint>
 
-  <!-- Right wheel: 7 cm diameter, 0.5 cm thick cylinder -->
+  <!-- Right wheel: 7 cm diameter 0.5 cm thick cylinder -->
   <link name="right_wheel_link">
     <visual>
       <geometry>
@@ -51,6 +51,7 @@
   </joint>
 
   <!-- TOF sensor: 2.5 cm in front of center -->
+  <!-- TODO: Debug - seems to be behind center in RViz -->
   <link name="tof_link">
     <visual>
       <geometry>
@@ -69,6 +70,7 @@
   </joint>
 
   <!-- IMU: 2.5 cm behind center -->
+  <!-- TODO: Debug - seems to be in front of center in RViz -->
   <link name="imu_link">
     <visual>
       <geometry>
