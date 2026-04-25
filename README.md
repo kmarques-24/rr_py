@@ -14,6 +14,9 @@
 * Python 3.10
 * Workspace ~/ros2_ws 
 
+## Partner Repository
+Meant for use with: https://github.com/kmarques-24/RR
+
 ## Getting Started
 Configure ROS 2 environment: https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html
 
