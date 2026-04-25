@@ -14,7 +14,7 @@
 * Python 3.10
 * Workspace ~/ros2_ws 
 
-# Partner Repository
+### Partner Repository
 Meant for use with: https://github.com/kmarques-24/RR
 
 ## Getting Started
@@ -41,7 +41,7 @@ Clone the rr_py package by running the following command in ~/ros2_ws/src:
 git clone https://github.com/IceCreamSandwhich/RR.git
 ```
 
-# Router
+### Router
 Plug in router and wait a minute for network RR to become visible. 
 
 Connect and open http://192.168.8.1/ to see connected clients (laptop, esp32) and IPs.
